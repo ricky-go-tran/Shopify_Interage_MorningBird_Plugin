@@ -1,6 +1,6 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -18,5 +18,14 @@ module ShopifySyncMorningbird
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    ShopifyAPI::Context.setup(
+      api_key: Rails.application.credentials.shopify_api,
+      api_secret_key: Rails.application.credentials.shopify_key,
+      host: 'https://5ee9-2a09-bac5-d46c-e6-00-17-182.ngrok-free.app',
+      scope: 'read_orders,read_products',
+      is_embedded: true,
+      api_version: '2023-10',
+      is_private: false
+    )
   end
 end
